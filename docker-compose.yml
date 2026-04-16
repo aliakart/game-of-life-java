@@ -1,0 +1,24 @@
+services:
+  pgadmin:
+    image: dpage/pgadmin4:9.11
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "258512@p.lodz.pl"
+      PGADMIN_DEFAULT_PASSWORD: "pgadmin"
+    ports:
+      - "80:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+  db:
+    image: postgres:18
+    restart: always
+    environment:
+      POSTGRES_DB: nbddb
+      POSTGRES_USER: nbd
+      POSTGRES_PASSWORD: nbdpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg:/var/lib/postgresql/18/docker
+volumes:
+  pg:
+  pgadmin:
